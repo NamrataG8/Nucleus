@@ -28,8 +28,7 @@
 #include <mmeStates/s1ReleaseStates.h>
 #include <mmeStates/serviceRequestStates.h>
 #include <mmeStates/tauStates.h>
-//#include <mmeStates/s1HandoverStates.h>
-#include <mmeStates/s1IntraMmeHandoverStates.h>
+#include <mmeStates/s1HandoverStates.h>
 #include <msgBuffer.h>
 #include <msgType.h>
 #include <log.h>
@@ -1059,29 +1058,5 @@ ActStatus ActionHandlers::handle_detach_failure(ControlBlock& cb)
     log_msg(LOG_DEBUG, "handle_detach_failure: Exit ");
 
     return rc;
-}
-
-/***************************************
-* Action handler : fwd_rel_req_handler
-***************************************/
-ActStatus ActionHandlers::fwd_rel_req_handler(ControlBlock& cb)
-{
-    return ActStatus::PROCEED;
-}
-
-/***************************************
-* Action handler : send_overload_start
-***************************************/
-ActStatus ActionHandlers::send_overload_start(ControlBlock& cb)
-{
-    return ActStatus::PROCEED;
-}
-
-/***************************************
-* Action handler : send_overload_stop
-***************************************/
-ActStatus ActionHandlers::send_overload_stop(ControlBlock& cb)
-{
-    return ActStatus::PROCEED;
 }
 

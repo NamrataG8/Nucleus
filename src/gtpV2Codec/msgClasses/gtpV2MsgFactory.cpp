@@ -30,6 +30,7 @@
 #include "downlinkDataNotificationFailureIndicationMsg.h"
 #include "echoRequestMsg.h"
 #include "echoResponseMsg.h"
+#include "forwardRelocationRequestMsg.h"
 
 static GtpV2MsgFactory gtpV2MsgFactory;
 
@@ -87,6 +88,9 @@ GtpV2MsgFactory::GtpV2MsgFactory()
 
     EchoResponseMsg* echoResponseMsg_p = new (EchoResponseMsg);
     msgObjectContainer.insert(std::pair<Uint8, GtpV2Message*>(EchoResponseMsgType, echoResponseMsg_p));
+
+    ForwardRelocationRequestMsg* forwardRelocationRequestMsg_p = new (ForwardRelocationRequestMsg);
+    msgObjectContainer.insert(std::pair<Uint8, GtpV2Message*>(ForwardRelocationRequestMsgType, forwardRelocationRequestMsg_p));
 
 
 }

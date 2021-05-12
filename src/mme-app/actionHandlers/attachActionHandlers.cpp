@@ -73,7 +73,7 @@ ActStatus ActionHandlers::validate_imsi_in_ue_context(ControlBlock& cb)
     return ActStatus::PROCEED;
 }
 
-/*ActStatus ActionHandlers::send_identity_request_to_ue(ControlBlock& cb)
+ActStatus ActionHandlers::send_identity_request_to_ue(ControlBlock& cb)
 {
 	log_msg(LOG_DEBUG, "Inside send_identity_request_to_ue ");
 
@@ -110,7 +110,7 @@ ActStatus ActionHandlers::validate_imsi_in_ue_context(ControlBlock& cb)
 	
 	return ActStatus::PROCEED;
 }
-*/
+
 ActStatus ActionHandlers::process_identity_response(ControlBlock& cb)
 {
 	log_msg(LOG_DEBUG, "Inside process_identity_response ");
@@ -1501,46 +1501,3 @@ ActStatus ActionHandlers::handle_s1_rel_req_during_attach(ControlBlock& cb)
 
     return ActStatus::PROCEED;
 }
-/***************************************
-* Action handler : send_identification_request_to_old_mme
-***************************************/
-ActStatus ActionHandlers::send_identification_request_to_old_mme(ControlBlock& cb)
-{
-	log_msg(LOG_DEBUG, "Inside send_identification_request_to_old_mme");
-
-	UEContext *ue_ctxt = dynamic_cast<UEContext*>(cb.getPermDataBlock());
-	VERIFY_UE(cb, ue_ctxt, "Invalid UE");
-
-	
-	
-	struct ID_Q_msg id_msg;
-	id_msg.msg_type = identification_request;
-	id_msg.ue_idx = ue_ctxt->getContextID();
-	
-
-	memcpy(&(id_msg.guti), &(ue_ctxt->getS11SgwCtrlFteid().guti,  //TODO guti need to find
-		sizeof(struct fteid));
-
-
-	cmn::ipc::IpcAddress destAddr;
-	destAddr.u32 = TipcServiceInstance::s10AppInstanceNum_c;
-
-    mmeStats::Instance()->increment(mmeStatsCounter::MME_MSG_TX_S10_IDENTIFICATION_REQUEST);
-	MmeIpcInterface &mmeIpcIf = static_cast<MmeIpcInterface&>(compDb.getComponent(MmeIpcInterfaceCompId));   
-	mmeIpcIf.dispatchIpcMsg((char *) &id_msg, sizeof(id_msg), destAddr);
-		
-	ProcedureStats::num_of_identification_req_sent ++;
-	log_msg(LOG_DEBUG, "Leaving send_identification_request_to_old_mme ");
-	
-
-    return ActStatus::PROCEED;
-}
-
-/***************************************
-* Action handler : process_identification_response
-***************************************/
-ActStatus ActionHandlers::process_identification_response(ControlBlock& cb)
-{
-    return ActStatus::PROCEED;
-}
-

@@ -50,6 +50,7 @@ public:
     DownlinkDataNotificationFailureIndicationMsgData downlinkDataNotificationFailureIndicationStackData;
     EchoRequestMsgData echoRequestStackData;
     EchoResponseMsgData echoResponseStackData;
+    ForwardRelocationRequestMsgData forwardRelocationRequestStackData;
 
     bool encodeMessage(GtpV2MessageHeader& msgHeader, MsgBuffer& buffer,
                  void* data_p = NULL);

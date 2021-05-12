@@ -35,6 +35,7 @@
 #define GTP_RABR_RSP                                        171
 #define GTP_DOWNLINK_DATA_NOTIFICATION			    176
 #define GTP_DOWNLINK_DATA_NOTIFICATION_ACK 		    177
+#define GTP_FORWARD_RELOCATION_REQ                  133
 
 
 

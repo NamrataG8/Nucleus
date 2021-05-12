@@ -94,6 +94,9 @@ gtpV2CodecOBJS := $(addprefix $(gtpV2CodecOBJDIR), \
 	ieClasses/throttlingIe.o \
 	ieClasses/pagingAndServiceInformationIe.o \
 	ieClasses/nodeFeaturesIe.o \
+	ieClasses/targetIdentificationIe.o \
+	ieClasses/plmnIdIe.o \
+	ieClasses/mmContextIe.o \
 	msgClasses/createSessionRequestMsg.o \
 	msgClasses/gtpV2MsgFactory.o \
 	gtpV2Stack.o \
@@ -114,6 +117,7 @@ gtpV2CodecOBJS := $(addprefix $(gtpV2CodecOBJDIR), \
 	msgClasses/downlinkDataNotificationFailureIndicationMsg.o \
 	msgClasses/echoRequestMsg.o \
 	msgClasses/echoResponseMsg.o \
+	msgClasses/forwardRelocationRequestMsg.o \
 	ieClasses/bearerContextsToBeModifiedInModifyBearerRequest.o \
 	ieClasses/bearerContextIe.o \
 	ieClasses/manual/gtpV2GroupedIe.o \
@@ -176,6 +180,8 @@ gtpV2CodecOBJS := $(addprefix $(gtpV2CodecOBJDIR), \
 	ieClasses/twanEpdgsOverloadControlInformationInDeleteBearerResponse.o \
 	ieClasses/sgwsNodeLevelLoadControlInformationInDownlinkDataNotification.o \
 	ieClasses/sgwsOverloadControlInformationInDownlinkDataNotification.o \
+	ieClasses/mmeSgsnUeScefPdnConnectionsInForwardRelocationRequest.o \
+	ieClasses/scefPdnConnectionIe.o \
 	ieClasses/manual/dataTypeCodecUtils_manual.o \
 	gtpV2StackWrappers.o )
 all :  $(gtpV2CodecLIB)

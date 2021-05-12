@@ -727,6 +727,30 @@ typedef struct
     NodeFeaturesIeData sendingNodeFeatures;
 }EchoResponseMsgData;
 
+typedef struct
+{
+    bool imsiIePresent;   
+    bool sgwS11S4IpAddressAndTeidForControlPlaneIePresent;   
+    bool sgwNodeNameIePresent;   
+    bool indicationFlagsIePresent;   
+    bool targetIdentificationIePresent;   
+    bool selectedPlmnIdIePresent;   
+    bool eUtranTransparentContainerIePresent;   
+    bool mmeSgsnUeScefPdnConnectionsIePresent;   
+
+
+    ImsiIeData imsi;
+    FTeidIeData senderFTeidForControlPlane;
+    FTeidIeData sgwS11S4IpAddressAndTeidForControlPlane;
+    FqdnIeData sgwNodeName;
+    MmContextIeData mmeSgsnAmfUeMmContext;
+    IndicationIeData indicationFlags;
+    TargetIdentificationIeData targetIdentification;
+    PlmnIdIeData selectedPlmnId;
+    FContainerIeData eUtranTransparentContainer;
+    MmeSgsnUeScefPdnConnectionsInForwardRelocationRequestData mmeSgsnUeScefPdnConnections;
+}ForwardRelocationRequestMsgData;
+
 
 //Ie Type Constants
 static const  Uint8  CreateSessionRequestMsgType = 32;    
@@ -746,6 +770,7 @@ static const  Uint8  DownlinkDataNotificationAcknowledgeMsgType = 177;
 static const  Uint8  DownlinkDataNotificationFailureIndicationMsgType = 70;    
 static const  Uint8  EchoRequestMsgType = 1;    
 static const  Uint8  EchoResponseMsgType = 2;    
+static const  Uint8  ForwardRelocationRequestMsgType = 133;    
 
 
 #endif 

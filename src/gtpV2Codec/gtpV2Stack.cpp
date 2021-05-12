@@ -33,6 +33,7 @@
 #include "msgClasses/downlinkDataNotificationFailureIndicationMsg.h"
 #include "msgClasses/echoRequestMsg.h"
 #include "msgClasses/echoResponseMsg.h"
+#include "msgClasses/forwardRelocationRequestMsg.h"
 
 thread_local cmn::utils::Debug errorStream;
 
@@ -437,6 +438,28 @@ GtpV2Stack::encodeMessage (GtpV2MessageHeader & msgHeader,
                 EchoResponseMsg & >(msg).
                 encodeEchoResponseMsg (buffer,
                             echoResponseStackData);
+            }
+            break;
+        }
+        case ForwardRelocationRequestMsgType:
+        {
+            if (data_p != NULL)
+            {
+                rc =
+               dynamic_cast<
+               ForwardRelocationRequestMsg & >(msg).
+               encodeForwardRelocationRequestMsg(buffer,
+    			     *((ForwardRelocationRequestMsgData *)
+        			     data_p));
+            }
+            else
+            { 
+                // Application has filled the data structure provided by the stack
+                rc = 
+                dynamic_cast<
+                ForwardRelocationRequestMsg & >(msg).
+                encodeForwardRelocationRequestMsg (buffer,
+                            forwardRelocationRequestStackData);
             }
             break;
         }
@@ -943,6 +966,32 @@ GtpV2Stack::decodeMessage (GtpV2MessageHeader& msgHeader,
             }
             break;
         }
+        case ForwardRelocationRequestMsgType:
+        {
+            if (data_p != NULL)
+            {
+                rc =
+                dynamic_cast<
+                ForwardRelocationRequestMsg & >(msg).
+                decodeForwardRelocationRequestMsg(buffer,
+                            *(ForwardRelocationRequestMsgData*)
+                             data_p, msgDataLength);
+            }
+            else
+            { 
+                // Application wants to use the data structure provided by the stack
+                // let us first clear any data present in the internal data structure
+                memset (&forwardRelocationRequestStackData, 0,
+                sizeof (ForwardRelocationRequestMsgData));
+                rc =
+                dynamic_cast<
+                ForwardRelocationRequestMsg & >(msg).
+                decodeForwardRelocationRequestMsg(buffer,
+                            forwardRelocationRequestStackData,
+                            msgDataLength);
+            }
+            break;
+        }
     }
     return rc;
 }
@@ -1312,6 +1361,27 @@ GtpV2Stack::display_v(Uint8 msgType, Debug& stream, void* data_p)
             EchoResponseMsg & >(msg).
             displayEchoResponseMsgData_v
                         (echoResponseStackData, stream);
+            }
+           break;
+        }
+        case ForwardRelocationRequestMsgType:
+        {
+            stream.add ((char *)"Message: ForwardRelocationRequestMsg");
+            stream.endOfLine ();
+            if (data_p != NULL)
+            {
+            dynamic_cast<
+            ForwardRelocationRequestMsg & >(msg).
+            displayForwardRelocationRequestMsgData_v (*
+                        ((ForwardRelocationRequestMsgData*) data_p), stream);
+            }
+            else
+            {
+            // Application wants to use the data structure provided by the stack
+            dynamic_cast<
+            ForwardRelocationRequestMsg & >(msg).
+            displayForwardRelocationRequestMsgData_v
+                        (forwardRelocationRequestStackData, stream);
             }
            break;
         }

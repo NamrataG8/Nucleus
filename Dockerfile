@@ -33,11 +33,15 @@ RUN make -C src/cmn
 COPY include/s11 ./include/s11
 COPY include/s6a ./include/s6a
 COPY include/s1ap ./include/s1ap
+COPY include/s10 ./include/s10
 COPY src/s11 ./src/s11
 RUN make -C src/s11/cpp_utils --debug
 RUN make -C src/s11
 COPY src/s6a ./src/s6a
 RUN make -C src/s6a
+COPY src/s10 ./src/s10
+RUN make -C src/s10/cpp_utils --debug
+RUN make -C src/s10
 COPY src/mme-app ./src/mme-app
 RUN make -C src/mme-app
 COPY src/s1ap ./src/s1ap
@@ -70,3 +74,13 @@ LABEL org.label-schema.schema-version=1.0 \
       org.label-schema.vcs-ref=$org_label_schema_vcs_ref \
       org.label-schema.build-date=$org_label_schema_build_date \
       org.opencord.vcs-commit-date=$org_opencord_vcs_commit_date
+
+WORKDIR /openmme/target/lib
+RUN cp * /usr/local/lib
+RUN cd /usr/local/lib
+RUN ldconfig
+WORKDIR /openmme/target/conf
+RUN  ./make_certs.sh mme localdomain
+RUN apt-get update
+RUN apt-get -y install vim
+EXPOSE 36412

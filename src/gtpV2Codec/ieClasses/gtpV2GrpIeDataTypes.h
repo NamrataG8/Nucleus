@@ -609,12 +609,21 @@ typedef struct
     EpcTimerIeData periodOfValidity;    
 }SgwsOverloadControlInformationInDownlinkDataNotificationData;
 
+typedef struct
+{
+
+    ApnIeData apn;    
+    EbiIeData defaultEpsBearerId;    
+    NodeIdentifierIeData scefId;    
+}MmeSgsnUeScefPdnConnectionsInForwardRelocationRequestData;
+
 
 //Ie Type Constants
 static const  Uint8  BearerContextIeType = 93;    
 static const  Uint8  OverloadControlInformationIeType = 180;    
 static const  Uint8  RemoteUeContextIeType = 191;    
 static const  Uint8  LoadControlInformationIeType = 181;    
+static const  Uint8  ScefPdnConnectionIeType = 195;    
 
 
 #endif 

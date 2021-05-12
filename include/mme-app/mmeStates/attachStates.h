@@ -219,46 +219,6 @@
 			AttachWfIdentityResponse();  
 	};
 	
-	class AttachWfIdentificationResponse : public AttachState
-	{
-		public:
-			/******************************************
-			* Instance 
-			*    Creates static instance for the state
-			*******************************************/
-			static AttachWfIdentificationResponse* Instance();
-
-			/****************************************
-			* AttachWfIdentificationResponse
-			*    Destructor
-			****************************************/
-			~AttachWfIdentificationResponse();			
-			
-			/******************************************
-			* initialize
-			*  Initializes action handlers for the state
-			* and next state
-			******************************************/
-			void initialize();
-
-			/*****************************************
-			* returns stateId
-			*****************************************/
-			uint16_t getStateId() const;
-
-			/*****************************************
-			* returns stateName
-			*****************************************/
-			const char* getStateName() const;
-
-		protected:
-			/****************************************
-			* AttachWfIdentificationResponse
-			*    Protected constructor
-			****************************************/
-			AttachWfIdentificationResponse();  
-	};
-	
 	class AttachWfAuthResp : public AttachState
 	{
 		public:
